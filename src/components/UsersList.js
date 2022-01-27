@@ -7,12 +7,14 @@ const UsersList = () => {
   useEffect(() => {
     axios.get("https://randomuser.me/api/?results=10.").then((resp) => {
       let data = resp.data.results;
-      setUsers((users) => ({ ...users, data }));
+      setUsers((users) => [...data]);
     });
   }, []);
 
   return (
-    <div className='list-container'>{users && <UserItem users={users} />}</div>
+    <div className='accordion-container'>
+      {users && <UserItem users={users} />}
+    </div>
   );
 };
 export default UsersList;

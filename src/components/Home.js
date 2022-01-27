@@ -6,7 +6,7 @@ const Home = () => {
     <div className='carousel slide'>
       <div className='carousel-inner'>
         <div className='carousel-item active'>
-          <img src={hero} className='d-block w-100' alt='...' />
+          <img src={hero} className='d-block w-100' alt='users-img' />
         </div>
       </div>
     </div>
