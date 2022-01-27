@@ -1,18 +1,43 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Header = () => {
+const Navbar = () => {
   return (
-    <header>
-      <h1>Users Management App</h1>
-      <div className='links'>
-        <NavLink to='/' exact='true'>
-          Users List
-        </NavLink>
-        <NavLink to='/add'>Add User</NavLink>
+    <nav className='navbar navbar-expand-lg navbar-light bg-light'>
+      <div className='container-fluid'>
+        <a className='navbar-brand' href='#'>
+          Users Management
+        </a>
+        <button
+          className='navbar-toggler'
+          type='button'
+          data-bs-toggle='collapse'
+          data-bs-target='#navbarNav'
+          aria-controls='navbarNav'
+          aria-expanded='false'
+          aria-label='Toggle navigation'>
+          <span className='navbar-toggler-icon'></span>
+        </button>
+        <div className='collapse navbar-collapse' id='navbarNav'>
+          <ul className='navbar-nav'>
+            <li className='nav-item'>
+              <Link className='nav-link' to='/' exact='true'>
+                Users List
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link className='nav-link' to='/add'>
+                Add User
+              </Link>
+            </li>
+            {/* <li className='nav-item'>
+              <a className='nav-link disabled'>Disabled</a>
+            </li> */}
+          </ul>
+        </div>
       </div>
-    </header>
+    </nav>
   );
 };
 
-export default Header;
+export default Navbar;
