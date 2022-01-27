@@ -1,28 +1,30 @@
 import React, { useState } from "react";
 
 const UserItem = ({ users }) => {
-  const [isActive, setActive] = useState("false");
-  const handleToggle = () => {
-    setActive(!isActive);
+  const [activeI, setActiveI] = useState(null);
+  const handleToggle = (index) => {
+    index === activeI ? setActiveI(null) : setActiveI(index);
   };
   console.log(users);
   return (
     <div className='accordion'>
-      {users.map((user) => {
+      {users.map((user, index) => {
         let title = `${user.name.title}. ${user.name.first} ${user.name.last}`;
         return (
-          <div className='accordion-item' key={user.name.last}>
+          <div className='accordion-item' key={index}>
             <h2 className='accordion-header' id='headingOne'>
               <button
                 className={`accordion-button  ${
-                  isActive ? "collapsed" : "show"
+                  index === activeI ? "show" : "collapsed"
                 }`}
                 type='button'
                 data-bs-toggle='collapse'
                 data-bs-target='#collapseOne'
                 aria-expanded='true'
                 aria-controls='collapseOne'
-                onClick={handleToggle}>
+                onClick={() => {
+                  handleToggle(index);
+                }}>
                 {title}
               </button>
             </h2>
