@@ -1,21 +1,19 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Home from "../components/Home";
 import AddUser from "../components/AddUser";
 import UsersList from "../components/UsersList";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
-      <div>
-        <Navbar />
-        <div className='main-content'>
-          <Routes>
-            <Route component={UsersList} path='/' />
-            <Route component={AddUser} path='/add' />
-          </Routes>
-        </div>
-      </div>
+      <Navbar />
+      <Routes>
+        <Route exact path='/' element={<Home />}></Route>
+        <Route path='/list' element={<UsersList />}></Route>
+        <Route path='/add' element={<AddUser />}></Route>
+      </Routes>
     </BrowserRouter>
   );
 };
