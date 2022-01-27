@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <nav className='navbar navbar-expand-lg navbar-light bg-light'>
       <div className='container-fluid'>
-        <Link className='navbar-brand' to='/' exact='true'>
+        <Link className='navbar-brand' to='/'>
           Users Management
         </Link>
         <div className='collapse navbar-collapse' id='navbarNav'>
@@ -20,9 +20,6 @@ const Navbar = () => {
                 Add User
               </Link>
             </li>
-            {/* <li className='nav-item'>
-              <a className='nav-link disabled'>Disabled</a>
-            </li> */}
           </ul>
         </div>
       </div>

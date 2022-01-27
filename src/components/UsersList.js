@@ -1,21 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import UserItem from "./UserItem";
 
-export default class UsersList extends React.Component {
-  componentDidMount() {
+const UsersList = () => {
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
     axios.get("https://randomuser.me/api/?results=10.").then((resp) => {
-      console.log(resp.data);
+      let data = resp.data.results;
+      setUsers((users) => ({ ...users, data }));
     });
-  }
-  render() {
-    return (
-      <ul className='list-group'>
-        <li className='list-group-item'>An item</li>
-        <li className='list-group-item'>A second item</li>
-        <li className='list-group-item'>A third item</li>
-        <li className='list-group-item'>A fourth item</li>
-        <li className='list-group-item'>And a fifth one</li>
-      </ul>
-    );
-  }
-}
+  }, []);
+
+  return (
+    <div className='list-container'>{users && <UserItem users={users} />}</div>
+  );
+};
+export default UsersList;
