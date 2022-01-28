@@ -1,10 +1,21 @@
 import React, { useState } from "react";
+import EditUser from "./EditUser";
 
-const UserItem = ({ users }) => {
+const UserItem = ({ users, setUsers }) => {
   const [activeI, setActiveI] = useState(null);
+  const [show, setShow] = useState(false);
   const handleToggle = (index) => {
     index === activeI ? setActiveI(null) : setActiveI(index);
   };
+  const handleShow = () => {
+    setShow(!show);
+  };
+  const deleteUser = (index) => {
+    let newUsers = [...users];
+    newUsers.splice(index, 1);
+    setUsers(newUsers);
+  };
+
   return (
     <div className='accordion'>
       {users.map((user, index) => {
@@ -13,7 +24,6 @@ const UserItem = ({ users }) => {
         return (
           <div className='accordion-item' key={index}>
             <h2 className='accordion-header' id='headingOne'>
-              {" "}
               <button
                 className={`accordion-button  ${
                   index === activeI ? "show fw-bold" : "collapsed"
@@ -50,7 +60,6 @@ const UserItem = ({ users }) => {
                     <tr className='align-baseline'>
                       <th scope='row'>{user.id.value}</th>
                       <td>
-                        {" "}
                         <img src={user.picture.medium} alt='user-img' />
                       </td>
                       <td>{user.email}</td>
@@ -58,12 +67,25 @@ const UserItem = ({ users }) => {
                       <td>
                         <button
                           type='button'
-                          className='btn btn-outline-secondary'>
+                          className='btn btn-outline-secondary'
+                          onClick={handleShow}>
                           Edit
                         </button>
+                        <EditUser
+                          users={users}
+                          title={title}
+                          location={location}
+                          email={user.email}
+                          show={show}
+                          handleShow={handleShow}
+                          index={index}
+                        />
                         <button
                           type='button'
-                          className='btn btn-outline-secondary'>
+                          className='btn btn-outline-secondary'
+                          onClick={() => {
+                            deleteUser(index);
+                          }}>
                           Delete
                         </button>
                       </td>
