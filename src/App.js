@@ -9,7 +9,7 @@ function App() {
         id='sticky-footer'
         className='flex-shrink-0 py-4 bg-dark text-white-50 fixed-bottom'>
         <div className='container text-center'>
-          <small>Copyright &copy; Users Management</small>
+          <small>Copyright &copy; Users Library</small>
         </div>
       </footer>
     </div>

@@ -6,7 +6,7 @@ const Navbar = () => {
     <nav className='navbar navbar-expand-lg navbar-light bg-light'>
       <div className='container-fluid'>
         <Link className='navbar-brand' to='/'>
-          Users Management
+          Users Library
         </Link>
         <div className='navbar-expand' id='navbarNav'>
           <ul className='navbar-nav'>
