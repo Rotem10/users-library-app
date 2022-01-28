@@ -2,31 +2,47 @@ import React, { useState } from "react";
 import EditUser from "./EditUser";
 
 const UserItem = ({ users, setUsers }) => {
-  const [activeI, setActiveI] = useState(null);
+  const [activeIndex, setActiveI] = useState(null);
   const [show, setShow] = useState(false);
+  const [activeEdit, setActiveE] = useState(0);
   const handleToggle = (index) => {
-    index === activeI ? setActiveI(null) : setActiveI(index);
+    index === activeIndex ? setActiveI(null) : setActiveI(index);
   };
-  const handleShow = () => {
+  const handleShow = (index) => {
     setShow(!show);
+    setActiveE(index);
   };
   const deleteUser = (index) => {
     let newUsers = [...users];
     newUsers.splice(index, 1);
     setUsers(newUsers);
   };
+  let titles = users.map((user) => {
+    return user.name.title
+      ? `${user.name.title}. ${user.name.first} ${user.name.last}`
+      : user.name;
+  });
+  let locations = users.map((user) => {
+    return user.location.country
+      ? `${user.location.country}, ${user.location.city}, ${user.location.street.name}`
+      : user.location;
+  });
 
   return (
     <div className='accordion'>
       {users.map((user, index) => {
-        let title = `${user.name.title}. ${user.name.first} ${user.name.last}`;
-        let location = `${user.location.country}, ${user.location.city}, ${user.location.street.name}`;
+        // let title = user.name.title
+        //   ? `${user.name.title}. ${user.name.first} ${user.name.last}`
+        //   : user.name;
+        // let location = user.location.country
+        //   ? `${user.location.country}, ${user.location.city}, ${user.location.street.name}`
+        //   : user.location;
         return (
           <div className='accordion-item' key={index}>
             <h2 className='accordion-header' id='headingOne'>
               <button
                 className={`accordion-button  ${
-                  index === activeI ? "show fw-bold" : "collapsed"
+                  index === activeIndex ? "show fw-bold" : "collapsed"
                 }`}
                 type='button'
                 data-bs-toggle='collapse'
@@ -36,12 +52,12 @@ const UserItem = ({ users, setUsers }) => {
                 onClick={() => {
                   handleToggle(index);
                 }}>
-                {title}
+                {titles[index]}
               </button>
             </h2>
             <div
               className={`accordion-collapse collapse  ${
-                index === activeI ? "show" : "collapse"
+                index === activeIndex ? "show" : "collapse"
               }`}
               aria-labelledby='headingOne'
               data-bs-parent='#accordionExample'>
@@ -63,22 +79,23 @@ const UserItem = ({ users, setUsers }) => {
                         <img src={user.picture.medium} alt='user-img' />
                       </td>
                       <td>{user.email}</td>
-                      <td>{location}</td>
+                      <td>{locations[index]}</td>
                       <td>
                         <button
                           type='button'
                           className='btn btn-outline-secondary'
-                          onClick={handleShow}>
+                          onClick={() => handleShow(index)}>
                           Edit
                         </button>
                         <EditUser
+                          titles={titles}
+                          locations={locations}
                           users={users}
-                          title={title}
-                          location={location}
-                          email={user.email}
+                          setUsers={setUsers}
+                          activeEdit={activeEdit}
+                          // index={index}
                           show={show}
                           handleShow={handleShow}
-                          index={index}
                         />
                         <button
                           type='button'
