@@ -5,12 +5,11 @@ const UserItem = ({ users }) => {
   const handleToggle = (index) => {
     index === activeI ? setActiveI(null) : setActiveI(index);
   };
-  console.log(users);
   return (
     <div className='accordion'>
       {users.map((user, index) => {
         let title = `${user.name.title}. ${user.name.first} ${user.name.last}`;
-        let location = `${user.location.country}, ${user.location.city}, ${user.location.street.name} ${user.location.street.number}`;
+        let location = `${user.location.country}, ${user.location.city}, ${user.location.street.name}`;
         return (
           <div className='accordion-item' key={index}>
             <h2 className='accordion-header' id='headingOne'>
@@ -44,6 +43,7 @@ const UserItem = ({ users }) => {
                       <th scope='col'>Picture</th>
                       <th scope='col'>Email</th>
                       <th scope='col'>Location</th>
+                      <th scope='col'>Manage</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -55,6 +55,18 @@ const UserItem = ({ users }) => {
                       </td>
                       <td>{user.email}</td>
                       <td>{location}</td>
+                      <td>
+                        <button
+                          type='button'
+                          className='btn btn-outline-secondary'>
+                          Edit
+                        </button>
+                        <button
+                          type='button'
+                          className='btn btn-outline-secondary'>
+                          Delete
+                        </button>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
