@@ -54,7 +54,6 @@ const EditUser = ({
       handleShow(activeEdit);
     } else {
       setError(!error);
-      console.log("error");
     }
   };
 
@@ -83,7 +82,7 @@ const EditUser = ({
           <div className='mb-3'>
             <label className='form-label'>Email</label>
             <input
-              type='text'
+              type='email'
               className='form-control'
               placeholder={users[activeEdit].email}
               onChange={(e) => {

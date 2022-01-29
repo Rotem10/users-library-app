@@ -31,12 +31,6 @@ const UserItem = ({ users, setUsers }) => {
   return (
     <div className='accordion'>
       {users.map((user, index) => {
-        // let title = user.name.title
-        //   ? `${user.name.title}. ${user.name.first} ${user.name.last}`
-        //   : user.name;
-        // let location = user.location.country
-        //   ? `${user.location.country}, ${user.location.city}, ${user.location.street.name}`
-        //   : user.location;
         return (
           <div className='accordion-item' key={index}>
             <h2 className='accordion-header' id='headingOne'>
@@ -93,7 +87,6 @@ const UserItem = ({ users, setUsers }) => {
                           users={users}
                           setUsers={setUsers}
                           activeEdit={activeEdit}
-                          // index={index}
                           show={show}
                           handleShow={handleShow}
                         />
